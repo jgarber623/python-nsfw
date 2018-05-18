@@ -1,6 +1,7 @@
-import caffe
 import numpy as np
 
+from caffe import Net
+from caffe.io import load_image, Transformer
 from io import BytesIO
 from PIL import Image
 
@@ -9,7 +10,7 @@ def _process(bytes, *, net, transformer):
     """
     """
 
-    loaded_image = caffe.io.load_image(bytes)
+    loaded_image = load_image(bytes)
     layers = ["prob"]
 
     H, W, _ = loaded_image.shape
@@ -49,9 +50,9 @@ def classify(image, model, weights):
     returns a tuple (sfw, nsfw)
     """
 
-    net = caffe.Net(model, 1, weights=weights)
+    net = Net(model, 1, weights=weights)
 
-    transformer = caffe.io.Transformer({
+    transformer = Transformer({
         "data": net.blobs["data"].data.shape
     })
     # Move image channels to outermost
