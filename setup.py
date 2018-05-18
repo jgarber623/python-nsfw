@@ -7,7 +7,7 @@ with open("README.md") as f:
 
 setup(
     name="nsfw",
-    version="0.1.0",
+    version="0.2.0",
     description=short_description,
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -15,6 +15,14 @@ setup(
     author="Jason Garber",
     author_email="jason@sixtwothree.org",
     license="MIT",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Topic :: Multimedia :: Graphics",
+        "Topic :: Scientific/Engineering :: Image Recognition",
+        "Topic :: Utilities",
+    ],
     packages=["nsfw"],
     python_requires=">=3",
     platforms=["any"],
