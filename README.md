@@ -19,7 +19,7 @@ brew install caffe
 Alternatively, you could use a [Docker](https://www.docker.com) Linux image (e.g. [`debian:stretch-slim`](https://hub.docker.com/_/debian/)) and install the necessary dependencies:
 
 ```sh
-apt update && apt install caffe-cpu python3-pip wget
+apt update && apt install caffe-cpu python3 python3-pip wget
 ```
 
 ### Yahoo's open_nsfw Models
@@ -47,10 +47,10 @@ from nsfw import classify
 from PIL import Image
 
 image = Image.open("/path/to/image.jpg")
-sfw, nsfw = classify(image, "/opt/open_nsfw/nsfw_model/deploy.prototxt", "/opt/open_nsfw/nsfw_model/pretrained_model.caffemodel")
+sfw, nsfw = classify(image, "/opt/open_nsfw/nsfw_model/deploy.prototxt", "/opt/open_nsfw/nsfw_model/resnet_50_1by2_nsfw.caffemodel")
 
-print("Suitable for Work Probability: {}".format(sfw))
-print("Not Suitable for Work Probability: {}".format(nsfw))
+print("SFW Probability: {}".format(sfw))
+print("NSFW Probability: {}".format(nsfw))
 ```
 
 ## License

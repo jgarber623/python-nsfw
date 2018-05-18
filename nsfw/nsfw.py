@@ -8,6 +8,17 @@ from PIL import Image
 
 def _process(bytes, *, net, transformer):
     """
+    Process an image using a Caffe network and transformer.
+
+    Parameters
+    ----------
+    bytes       : a resized image as a BytesIO object
+    net         : an instance of caffe.Net
+    transformer : an instance of caffe.io.Transformer
+
+    Returns
+    -------
+    probabilities : an array of SFW and NSFW probabilities as floats
     """
 
     loaded_image = load_image(bytes)
@@ -31,6 +42,16 @@ def _process(bytes, *, net, transformer):
 
 def _resize(image, size=(256, 256)):
     """
+    Resize an image to match Yahoo's open_nsfw pretrained model.
+
+    Parameters
+    ----------
+    image : a PIL ImageFile object
+    size  : a (width, height) tuple
+
+    Returns
+    -------
+    bytes : a resized image as a BytesIO object
     """
 
     if image.mode != "RGB":
@@ -46,8 +67,17 @@ def _resize(image, size=(256, 256)):
 
 def classify(image, model, weights):
     """
-    takes a PIL image, model (string, .prototxt), weights (string, .caffemodel)
-    returns a tuple (sfw, nsfw)
+    Determine the probability that an image is SFW or NSFW.
+
+    Parameters
+    ----------
+    image   : a PIL ImageFile object
+    model   : a string path to a Caffe model file (e.g. deploy.prototxt)
+    weights : a string path to a Caffe weights file (e.g. caffenet.caffemodel)
+
+    Returns
+    -------
+    (sfw, nsfw) : a tuple with SFW and NSFW probabilities
     """
 
     net = Net(model, 1, weights=weights)
