@@ -49,7 +49,7 @@ def classify(image, model, weights):
     returns a tuple (sfw, nsfw)
     """
 
-    net = caffe.Net(model, weights, caffe.TEST)
+    net = caffe.Net(model, 1, weights=weights)
 
     transformer = caffe.io.Transformer({
         "data": net.blobs["data"].data.shape
