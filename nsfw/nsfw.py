@@ -76,7 +76,7 @@ def _static_file(name):
 
     Parameters
     ----------
-    name : a file name
+    name : a string path to a file name (e.g. deploy.prototxt)
 
     Returns
     -------
@@ -99,9 +99,9 @@ def classify(
 
     Keyword Arguments
     -----------------
-    These arguments will default to the Yahoo OpenNSFW Defaults. If you have
-    your own trained models, you may pass the path to the prototxt and
-    caffemodel files.
+    These arguments default to Yahoo's open_nsfw defaults. If you have
+    your own trained models, you may pass the paths to the `.prototxt` and
+    `.caffemodel` files.
 
     model   : a string path to a Caffe model file (e.g. deploy.prototxt)
     weights : a string path to a Caffe weights file (e.g. caffenet.caffemodel)
