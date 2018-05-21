@@ -7,7 +7,7 @@ with open("README.md") as f:
 
 setup(
     name="nsfw",
-    version="0.3.1",
+    version="0.3.2",
     description=short_description,
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -15,12 +15,6 @@ setup(
     author="Jason Garber",
     author_email="jason@sixtwothree.org",
     license="MIT",
-    entry_points={
-        'console_scripts': [
-            'nsfwcheck = nsfw.cli:check',
-        ]
-    },
-
     classifiers=[
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",
@@ -30,9 +24,17 @@ setup(
         "Topic :: Utilities",
     ],
     packages=["nsfw"],
-    package_data={
-        "nsfw": ["deploy.prototxt", "resnet_50_1by2_nsfw.caffemodel"]
-    },
     python_requires=">=3",
+    package_data={
+        "nsfw": [
+            "deploy.prototxt",
+            "resnet_50_1by2_nsfw.caffemodel",
+        ]
+    },
+    entry_points={
+        "console_scripts": [
+            "nsfwcheck = nsfw.cli:check",
+        ]
+    },
     platforms=["any"],
 )

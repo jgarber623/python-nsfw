@@ -72,9 +72,15 @@ def _resize(image, size=(256, 256)):
 
 def _static_file(name):
     """
-    Return the path to a file that was included via a MANIFEST.in, so that we
-    can load things like models without having to worry about absolute
-    filesystem paths.
+    Return the path to a file included via `MANIFEST.in`.
+
+    Parameters
+    ----------
+    name : a file name
+
+    Returns
+    -------
+    path : an absolute filesystem path
     """
     return os.path.join(os.path.dirname(__file__), name)
 

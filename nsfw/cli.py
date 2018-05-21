@@ -1,25 +1,27 @@
 from nsfw import classify
-from PIL import Image
+
+import PIL.Image as Image
 import sys
 
 
 def probs(pct):
     """
-    return a human readable string representing the probabilities.
+    Return a human-readable string representing the probabilities.
 
     This scheme is shamelessly ripped from CIA's Words of Estimative
     Probability.
 
     https://www.cia.gov/library/center-for-the-study-of-intelligence/csi-publications/books-and-monographs/sherman-kent-and-the-board-of-national-estimates-collected-essays/6words.html
 
-    100%    Certainty
-    93%	give or take about 6%	Almost certain
-    75%	give or take about 12%	Probable
-    50%	give or take about 10%	Chances about even
-    30%	give or take about 10%	Probably not
-    7%	give or take about 5%	Almost certainly not
-    0%      Impossibility
+    100%                Certainty
+    93%     +/- ~6%     Almost certain
+    75%     +/- ~12%    Probable
+    50%     +/- ~10%    Chances about even
+    30%     +/- ~10%    Probably not
+    7%      +/- ~5%     Almost certainly not
+    0%                  Impossibility
     """
+
     pct = int(pct * 100)
 
     if pct == 100:
@@ -61,5 +63,5 @@ Usage:
         image = Image.open(path)
         sfw, nsfw = classify(image)
 
-        print("It is {} that this image is safe for work".format(probs(sfw)))
-        print("It is {} that this image is *not* safe for work".format(probs(nsfw)))
+        print("It is {} that this image is suitable for work.".format(probs(sfw)))
+        print("It is {} that this image is *not* suitable for work.".format(probs(nsfw)))
