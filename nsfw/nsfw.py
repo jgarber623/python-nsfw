@@ -2,6 +2,8 @@ import numpy
 import os
 import PIL.Image as Image
 
+os.environ["GLOG_minloglevel"] = "2"
+
 from caffe import Net
 from caffe.io import load_image, Transformer
 from io import BytesIO
