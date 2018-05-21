@@ -15,6 +15,12 @@ setup(
     author="Jason Garber",
     author_email="jason@sixtwothree.org",
     license="MIT",
+    entry_points={
+        'console_scripts': [
+            'nsfwcheck = nsfw.cli:check',
+        ]
+    },
+
     classifiers=[
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",

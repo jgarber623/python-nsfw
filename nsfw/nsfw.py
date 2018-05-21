@@ -1,3 +1,6 @@
+import os
+os.environ['GLOG_minloglevel'] = '2'
+
 import numpy as np
 
 from caffe import Net
