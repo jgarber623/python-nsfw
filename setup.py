@@ -30,6 +30,9 @@ setup(
         "Topic :: Utilities",
     ],
     packages=["nsfw"],
+    package_data={
+        "nsfw": ["deploy.prototxt", "resnet_50_1by2_nsfw.caffemodel"]
+    },
     python_requires=">=3",
     platforms=["any"],
 )
