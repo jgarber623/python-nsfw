@@ -40,7 +40,7 @@ def probs(pct):
     if pct > 2:
         return "almost certainly not"
 
-    return "impossibility"
+    return "an impossibility"
 
 
 def check():
@@ -62,4 +62,4 @@ Usage:
         sfw, nsfw = classify(image)
 
         print("It is {} that this image is safe for work".format(probs(sfw)))
-        print("It is {} that this image is *not* for work".format(probs(nsfw)))
+        print("It is {} that this image is *not* safe for work".format(probs(nsfw)))
