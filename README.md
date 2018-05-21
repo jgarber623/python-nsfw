@@ -48,4 +48,6 @@ print("NSFW Probability: {}".format(nsfw))
 
 python-nsfw is freely available under the [MIT License](https://opensource.org/licenses/MIT). Use it, learn from it, fork it, improve it, change it, tailor it to your needs.
 
+python-nsfw ships with copies of Yahoo's [open_nsfw Caffe models](https://github.com/yahoo/open_nsfw/tree/master/nsfw_model) (`nsfw/deploy.prototxt` and `nsfw/resent_50_1by2_nsfw.caffemodel`) which are licensed under the [BSD 2-Clause License](https://github.com/BVLC/caffe/blob/master/LICENSE).
+
 [pypi]: https://pypi.org/project/nsfw
