@@ -1,0 +1,2 @@
+include nsfw/deploy.prototxt
+include nsfw/resnet_50_1by2_nsfw.caffemodel

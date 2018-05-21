@@ -23,16 +23,6 @@ Alternatively, you could use a [Docker](https://www.docker.com) Linux image (e.g
 apt update && apt install caffe-cpu python3 python3-pip wget
 ```
 
-### Yahoo's open_nsfw Models
-
-[Yahoo's open_nsfw models](https://github.com/yahoo/open_nsfw) may be downloaded directly from GitHub. These files can go anywhere on your system, but we'll use `/opt/open_nsfw`.
-
-```sh
-mkdir -p /opt/open_nsfw
-
-wget -q -O - https://github.com/yahoo/open_nsfw/archive/master.tar.gz | tar xz -C /opt/open_nsfw --strip 1
-```
-
 ## Installation
 
 python-nsfw may be installed using [pip](https://pip.pypa.io):
@@ -48,7 +38,7 @@ from nsfw import classify
 from PIL import Image
 
 image = Image.open("/path/to/image.jpg")
-sfw, nsfw = classify(image, "/opt/open_nsfw/nsfw_model/deploy.prototxt", "/opt/open_nsfw/nsfw_model/resnet_50_1by2_nsfw.caffemodel")
+sfw, nsfw = classify(image)
 
 print("SFW Probability: {}".format(sfw))
 print("NSFW Probability: {}".format(nsfw))

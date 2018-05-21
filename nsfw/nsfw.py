@@ -3,7 +3,17 @@ import numpy as np
 from caffe import Net
 from caffe.io import load_image, Transformer
 from io import BytesIO
+import os
 from PIL import Image
+
+
+def _static_file(name):
+    """
+    Return the path to a file that was included via a MANIFEST.in, so that we
+    can load things like models without having to worry about absolute
+    filesystem paths.
+    """
+    return os.path.join(os.path.dirname(__file__), name)
 
 
 def _process(bytes, *, net, transformer):
@@ -35,7 +45,9 @@ def _process(bytes, *, net, transformer):
 
     transformed_image.shape = (1,) + transformed_image.shape
 
-    output = net.forward_all(blobs=layers, **{net.inputs[0]: transformed_image})
+    output = net.forward_all(blobs=layers, **{
+        net.inputs[0]: transformed_image
+    })
 
     return output[layers[0]][0].astype(float)
 
@@ -65,13 +77,24 @@ def _resize(image, size=(256, 256)):
     return bytes
 
 
-def classify(image, model, weights):
+def classify(
+    image,
+    model=_static_file("deploy.prototxt"),
+    weights=_static_file("resnet_50_1by2_nsfw.caffemodel"),
+):
     """
     Determine the probability that an image is SFW or NSFW.
 
     Parameters
     ----------
     image   : a PIL ImageFile object
+
+    Keyword Arguments
+    -----------------
+    These arguments will default to the Yahoo OpenNSFW Defaults. If you have
+    your own trained models, you may pass the path to the prototxt and
+    caffemodel files.
+
     model   : a string path to a Caffe model file (e.g. deploy.prototxt)
     weights : a string path to a Caffe weights file (e.g. caffenet.caffemodel)
 
