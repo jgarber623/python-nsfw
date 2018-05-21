@@ -1,19 +1,10 @@
-import numpy as np
+import numpy
+import os
+import PIL.Image as Image
 
 from caffe import Net
 from caffe.io import load_image, Transformer
 from io import BytesIO
-import os
-from PIL import Image
-
-
-def _static_file(name):
-    """
-    Return the path to a file that was included via a MANIFEST.in, so that we
-    can load things like models without having to worry about absolute
-    filesystem paths.
-    """
-    return os.path.join(os.path.dirname(__file__), name)
 
 
 def _process(bytes, *, net, transformer):
@@ -77,6 +68,15 @@ def _resize(image, size=(256, 256)):
     return bytes
 
 
+def _static_file(name):
+    """
+    Return the path to a file that was included via a MANIFEST.in, so that we
+    can load things like models without having to worry about absolute
+    filesystem paths.
+    """
+    return os.path.join(os.path.dirname(__file__), name)
+
+
 def classify(
     image,
     model=_static_file("deploy.prototxt"),
@@ -111,7 +111,7 @@ def classify(
     # Move image channels to outermost
     transformer.set_transpose("data", (2, 0, 1))
     # Subtract the dataset-mean value in each channel
-    transformer.set_mean("data", np.array([104, 117, 123]))
+    transformer.set_mean("data", numpy.array([104, 117, 123]))
     # Rescale from [0, 1] to [0, 255]
     transformer.set_raw_scale("data", 255)
     # Swap channels from RGB to BGR

@@ -34,8 +34,9 @@ pip3 install nsfw
 ## Usage
 
 ```python
+import PIL.Image as Image
+
 from nsfw import classify
-from PIL import Image
 
 image = Image.open("/path/to/image.jpg")
 sfw, nsfw = classify(image)
